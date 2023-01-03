@@ -6,7 +6,7 @@ import (
 )
 
 type Pair interface {
-	doSome() string
+	DoSome(val string) string
 }
 
 type keyValuePair struct {
@@ -15,12 +15,13 @@ type keyValuePair struct {
 }
 
 func (keyValuePair keyValuePair) DoSome(val string) string {
-	fmt.Printf("do some,%s,%s\n", keyValuePair.name, val)
+	fmt.Printf("do some,%s:%s\n", keyValuePair.name, val)
 	return "success"
 }
 
 func Example() {
-	var pair keyValuePair = keyValuePair{name: "key", value: "value"}
+	// 相较于java较为复杂，类型和值分属于不同的方法
+	var pair = keyValuePair{name: "key", value: "value"}
 	fmt.Printf("type : %s\n", reflect.TypeOf(pair))
 	fmt.Printf("value : %s\n", reflect.ValueOf(pair).FieldByName("name"))
 	var pp = &pair
