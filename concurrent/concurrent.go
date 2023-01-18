@@ -10,6 +10,7 @@ import (
 )
 
 type resource struct {
+	// Similarly, sync.Mutex does not have an explicit constructor or Init method. Instead, the zero value for a sync.Mutex is defined to be an unlocked mutex
 	mutex sync.Mutex
 	count int
 }
@@ -27,7 +28,7 @@ type acc struct {
 
 func Example() {
 	// lock
-	var lock = resource{count: 1}
+	var lock = resource{count: 1, mutex: sync.Mutex{}}
 	for i := 0; i < runtime.GOMAXPROCS(4); i++ {
 		// goroutine协程，gmp模型，g代表goroutine,m代表machine(类似cpu）,p代表processor(类似线程)。
 		// 采用m:n线程模型，m个g，n个p。p有个本地队列和global队列.
@@ -38,8 +39,8 @@ func Example() {
 	time.Sleep(100)
 	fmt.Println("count:", lock.count)
 	// syc.Map channel
-	var sm sync.Map = sync.Map{}
-	var chs []chan string = make([]chan string, runtime.GOMAXPROCS(4))
+	var sm = sync.Map{}
+	var chs = make([]chan string, runtime.GOMAXPROCS(4))
 	sm.Store("counter", -1)
 	for k := 0; k < runtime.GOMAXPROCS(4); k++ {
 		var ch chan string = make(chan string)

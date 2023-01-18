@@ -20,7 +20,7 @@ func (keyValuePair keyValuePair) DoSome(val string) string {
 }
 
 func Example() {
-	// 相较于java较为复杂，类型和值分属于不同的方法
+	// 相较于java较为复杂，类型和值分属于不同的方法,go的反射性能较差
 	var pair = keyValuePair{name: "key", value: "value"}
 	fmt.Printf("type : %s\n", reflect.TypeOf(pair))
 	fmt.Printf("value : %s\n", reflect.ValueOf(pair).FieldByName("name"))

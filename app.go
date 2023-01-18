@@ -6,7 +6,6 @@ import (
 	"go-demo/concurrent"
 	"go-demo/enums"
 	"go-demo/errorhandle"
-	demoio "go-demo/io"
 	"go-demo/pointer"
 	"go-demo/polymorphism"
 	"go-demo/reflection"
@@ -22,7 +21,7 @@ func main() {
 	fmt.Println("====errorhandle example start====")
 	errorhandle.Example()
 	fmt.Println("====io example start====")
-	demoio.Example()
+	// demoio.Example()
 	fmt.Println("====pointer example start====")
 	pointer.Example()
 	fmt.Println("====polymorphism example start====")
